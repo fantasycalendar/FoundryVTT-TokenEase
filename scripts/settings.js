@@ -64,7 +64,7 @@ export default function configure_settings(){
         scope: "world",
         config: true,
         default: 2,
-        type: String,
+        type: Number,
         choices: ["In", "Out", "In & Out"],
         onChange: () => debouncedDoubleCheckEase()
     });

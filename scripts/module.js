@@ -12,6 +12,10 @@ Hooks.once('init', async function() {
     console.log("Token Ease | Ready to (pl)ease!");
 });
 
+Hooks.once('ready', async function() {
+});
+
+
 function patch_TokenSetPosition() {
     libWrapper.register(
         "token-ease",
@@ -65,14 +69,23 @@ function patch_TokenAnimateMovement() {
 
             this._movement = ray;
 
-            let duration = animation?.duration || game.settings.get("token-ease", "default-duration");
             let speed = animation?.speed || game.settings.get("token-ease", "default-speed");
+            let duration = animation?.duration || game.settings.get("token-ease", "default-duration");
             let ease = animation?.ease || game.settings.get("token-ease", "default-ease");
 
             // Default move speed 10 spaces per second
             const s = canvas.dimensions.size;
             speed = s * speed;
             duration = duration ? duration : (ray.distance * 1000) / speed;
+
+            // If movement distance <= grid size, and play animation on movement keys isn't enabled, revert to foundry default
+            let playAnimation = game.settings.get("token-ease", "animation-on-movement-keys");
+            let smallMovement = Math.max(Math.abs(ray.dx), Math.abs(ray.dy)) <= canvas.grid.size;
+            if(smallMovement && !playAnimation && !animation?.speed && !animation?.duration){
+                speed = s * 10;
+                duration = (ray.distance * 1000) / speed;
+                ease = "linear";
+            }
 
             // Define attributes
             const attributes = [

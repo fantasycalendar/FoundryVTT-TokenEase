@@ -1,8 +1,12 @@
 {
-  "TOKENEASE.speed-title": "Token Speed",
-  "TOKENEASE.speed-description": "Sets the default animation speed of moving tokens.",
+  "TOKENEASE.speed-title": "Token Movement Speed",
+  "TOKENEASE.speed-description": "Sets the default animation speed of moving tokens, in spaces per second (10 is Foundry default).",
   "TOKENEASE.duration-title": "Token Movement Duration",
   "TOKENEASE.duration-description": "Sets the default animation duration for token movement (in milliseconds). This overrides Token Speed, and causes tokens to reach their destination in a set amount of time, regardless of distance.",
   "TOKENEASE.ease-title": "Token Movement Ease",
-  "TOKENEASE.ease-description": "Sets the type of ease used by the movement animation on tokens."
+  "TOKENEASE.ease-description": "Sets the type of ease used by the movement animation on tokens.",
+  "TOKENEASE.ease-type-title": "Ease In/Out",
+  "TOKENEASE.ease-type-description": "Sets the type of easing to use at the start/end of the animation. If Token Movement Ease is set to Linear, this has no impact.",
+  "TOKENEASE.movement-keys-title": "Play animation on keypad movement",
+  "TOKENEASE.movement-keys-description": "If enabled, this will make moving tokens with the movement keys (arrow keys, etc) to play the animations configured above. We do not recommend enabling this, as the movement distance is so short when using movement keys."
 }

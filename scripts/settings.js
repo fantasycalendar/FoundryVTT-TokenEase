@@ -1,5 +1,21 @@
 import { easeFunctions } from "./lib/ease.js";
 
+const easeChoices = Object.keys(easeFunctions).filter(ease => ease.indexOf("InOut") > -1).map((e) => e.replace("easeInOut", ""));
+easeChoices.unshift("Linear")
+const debouncedDoubleCheckEase = debounce(() => {
+    let easeInOut = game.settings.get("token-ease", "ease-type");
+    let easeIn = easeInOut !== 1 ? "In" : "";
+    let easeOut = easeInOut >= 1 ? "Out" : "";
+    let easeIndex = game.settings.get("token-ease", "config-ease");
+    let ease = easeChoices[easeIndex];
+    if(ease !== "Linear" && !(easeIn === "" && easeOut === "")){
+        ease = `ease${easeIn}${easeOut}${ease}`;
+    }else{
+        ease = ease.toLowerCase();
+    }
+    game.settings.set("token-ease", "default-ease", ease);
+}, 100)
+
 export default function configure_settings(){
 
     window.easeFunctions = easeFunctions;
@@ -22,25 +38,43 @@ export default function configure_settings(){
         type: Number
     });
 
-    // Collect ease functions, cleaning up their names
-    let easeChoices = Object.keys(easeFunctions).reduce((obj, curr) => {
-        let value = curr.split(/(?=[A-Z])/)
-        value = value.length > 1 ? value.slice(1) : value;
-        value = value.join(" ");
-        obj[curr] = value.charAt(0).toUpperCase() + value.slice(1);
-        return obj;
-    }, {});
+    game.settings.register("token-ease", "config-ease", {
+        name: game.i18n.format("TOKENEASE.ease-title"),
+        hint: game.i18n.format("TOKENEASE.ease-description"),
+        scope: "world",
+        config: true,
+        default: 0,
+        type: String,
+        choices: easeChoices,
+        onChange: () => debouncedDoubleCheckEase()
+    });
 
     game.settings.register("token-ease", "default-ease", {
         name: game.i18n.format("TOKENEASE.ease-title"),
         hint: game.i18n.format("TOKENEASE.ease-description"),
         scope: "world",
-        config: true,
+        config: false,
         default: "linear",
-        type: String,
-        choices: easeChoices
+        type: String
     });
 
-    console.log("Token Ease | Configured settings");
+    game.settings.register("token-ease", "ease-type", {
+        name: game.i18n.format("TOKENEASE.ease-type-title"),
+        hint: game.i18n.format("TOKENEASE.ease-type-description"),
+        scope: "world",
+        config: true,
+        default: 2,
+        type: String,
+        choices: ["In", "Out", "In & Out"],
+        onChange: () => debouncedDoubleCheckEase()
+    });
 
+    game.settings.register("token-ease", "animation-on-movement-keys", {
+        name: game.i18n.format("TOKENEASE.movement-keys-title"),
+        hint: game.i18n.format("TOKENEASE.movement-keys-description"),
+        scope: "world",
+        config: true,
+        default: false,
+        type: Boolean
+    });
 }

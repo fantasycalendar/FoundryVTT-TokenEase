@@ -19,21 +19,21 @@ No more will you suffer the lethargic slog of transporting tokens across the can
 
 Check out our other projects:
 
-* [Fantasy Calendar](https://app.fantasy-calendar.com/) - All-in-One Fantasy Calendar Manager - Creation of calendars and time-tracking in your homebrew or pre-made campaign worlds has never been easier
+* [Fantasy Calendar](https://app.fantasy-calendar.com/) - *Standalone* - All-in-One Fantasy Calendar Manager - Creation of calendars and time-tracking in your homebrew or pre-made campaign worlds has never been easier
 
-* [Dungeon Generator](http://dungeon-generator.fantasy-calendar.com/) - A simple dungeon generator with beautiful tiles from [Kristian Richards](https://www.patreon.com/csp_kris/posts)
+* [Dungeon Generator](http://dungeon-generator.fantasy-calendar.com/) - *Standalone* - A simple dungeon generator with beautiful tiles from [Kristian Richards](https://www.patreon.com/csp_kris/posts)
 
-* [Sequencer](https://github.com/fantasycalendar/FoundryVTT-Sequencer) - Building complex sequencers and animations doesn't have to be hard
+* [Sequencer](https://github.com/fantasycalendar/FoundryVTT-Sequencer) - *Foundry VTT* - Building complex sequencers and animations doesn't have to be hard
 
 ## Module Settings
 
 In the module settings, you can set the following options:
 
-### Token Speed
+### Token Movement Speed
 
 #### Default: 10
 
-This sets the default animation speed of moving tokens.
+This sets the default animation speed of moving tokens, in spaces per second (10 is Foundry default).
 
 ### Token Movement Duration
 
@@ -41,7 +41,7 @@ This sets the default animation speed of moving tokens.
 
 This sets the default animation duration for token movement (in milliseconds).
 
-This overrides **Token Speed**, and causes tokens to reach their destination in a set amount of time, regardless of distance.
+This overrides **Token Movement Speed**, and causes tokens to reach their destination in a set amount of time, regardless of distance.
 
 ### Token Movement Ease
 
@@ -49,7 +49,19 @@ This overrides **Token Speed**, and causes tokens to reach their destination in 
 
 This sets the type of ease used by the movement animation on tokens.
 
-You can use any of the easings listed here: [Easing Functions Cheat Sheet](https://easings.net/)
+### Ease In/Out
+
+#### Default: In & Out
+
+This sets the type of easing to use at the start/end of the animation. If Token Movement Ease is set to Linear, this has no impact.
+
+### Play animation on keypad movement
+
+#### Default: False
+
+If enabled, this will make moving tokens with the movement keys (arrow keys, etc) to play the animations configured above.
+
+We do not recommend enabling this, as the movement distance is so short when using movement keys.
 
 ## API
 

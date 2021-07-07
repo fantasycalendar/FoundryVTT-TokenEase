@@ -1,3 +1,8 @@
 {
-    "MODULE.hello": "hello"
+  "TOKENEASE.speed-title": "Token Speed",
+  "TOKENEASE.speed-description": "Sets the default animation speed of moving tokens.",
+  "TOKENEASE.duration-title": "Token Movement Duration",
+  "TOKENEASE.duration-description": "Sets the default animation duration for token movement (in milliseconds). This overrides Token Speed, and causes tokens to reach their destination in a set amount of time, regardless of distance.",
+  "TOKENEASE.ease-title": "Token Movement Ease",
+  "TOKENEASE.ease-description": "Sets the type of ease used by the movement animation on tokens."
 }

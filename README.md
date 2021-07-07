@@ -6,19 +6,24 @@ This module extends native Foundry behavior to introduce easing, custom movement
 
 No more will you suffer the lethargic slog of transporting tokens across the canvas!
 
----
-
 ## Credits
 
 * League of Extraordinary FoundryVTT Developers
 * [Easing Functions Cheat Sheet](https://easings.net/) ([GitHub](https://github.com/ai/easings.net)) - Copyright © 2020 Andrey Sitnik and Ivan Solovev
----
 
 ## Download Here:
 
 `https://github.com/FantasyCalendar/FoundryVTT-TokenEase/releases/latest/download/module.json`
 
----
+## If you like what you see...
+
+Check out our other projects:
+
+* [Fantasy Calendar](https://app.fantasy-calendar.com/) - All-in-One Fantasy Calendar Manager - Creation of calendars and time-tracking in your homebrew or pre-made campaign worlds has never been easier
+
+* [Dungeon Generator](http://dungeon-generator.fantasy-calendar.com/) - A simple dungeon generator with beautiful tiles from [Kristian Richards](https://www.patreon.com/csp_kris/posts)
+
+* [Sequencer](https://github.com/fantasycalendar/FoundryVTT-Sequencer) - Building complex sequencers and animations doesn't have to be hard
 
 ## Module Settings
 
@@ -46,8 +51,6 @@ This sets the type of ease used by the movement animation on tokens.
 
 You can use any of the easings listed here: [Easing Functions Cheat Sheet](https://easings.net/)
 
----
-
 ## API
 
 ### Changes to `Token.Document.Update`
@@ -70,6 +73,8 @@ If `speed` or `duration` is given in the `animation` parameter, it will override
 
 If `duration` is provided, `speed` has no impact on the animation, as the token will reach the destination within the given duration.
 
+---
+
 ### `window.easeFunctions`
 
 A global object that contains all the ease functions for quick access.
@@ -81,7 +86,6 @@ function linear(x) {
     return x;
 }
 ```
-
 
 ### List of ease options:
 

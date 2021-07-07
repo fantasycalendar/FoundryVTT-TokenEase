@@ -1,7 +1,7 @@
 {
   "name": "token-ease",
   "title": "Token Ease",
-  "description": "This module extends Foundry native behavior to introduce easing, custom movement speed, and movement duration to tokens.",
+  "description": "This module extends native Foundry behavior to introduce easing, custom movement speed, and movement duration to tokens.",
   "version": "This is auto replaced",
   "library": "false",
   "author": "Wasp (Wasp#2005)",

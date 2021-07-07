@@ -2,7 +2,7 @@
 
 # Token Ease
 
-This module extends Foundry native behavior to introduce easing, custom movement speed, and movement duration to tokens.
+This module extends native Foundry behavior to introduce easing, custom movement speed, and movement duration to tokens.
 
 No more will you suffer the lethargic slog of transporting tokens across the canvas!
 

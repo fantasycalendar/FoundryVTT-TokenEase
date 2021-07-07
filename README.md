@@ -29,6 +29,8 @@ Check out our other projects:
 
 In the module settings, you can set the following options:
 
+![Module settings](images/settings.png)
+
 ### Token Movement Speed
 
 #### Default: 10

@@ -134,8 +134,6 @@ function add_CanvasAnimation_Animate() {
         // Register the request function and context
         context = context || canvas.stage;
 
-        ease = window.easeFunctions[ease] ?? window.easeFunctions["linear"];
-
         // Dispatch the animation request and return as a Promise
         return this._animatePromise(this._animateFrame, context, name, attributes, duration, ontick, ease);
     };
@@ -173,6 +171,8 @@ function patch_AnimateFrame() {
         "token-ease",
         "CanvasAnimation.prototype.constructor._animateFrame",
         async function _animateFrame(deltaTime, resolve, reject, attributes, duration, ontick, ease) {
+
+            ease = window.easeFunctions[ease] ?? window.easeFunctions["linear"];
 
             let complete = attributes.length === 0;
             let dt = (duration * PIXI.settings.TARGET_FPMS) / deltaTime;

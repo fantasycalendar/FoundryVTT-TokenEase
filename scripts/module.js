@@ -20,7 +20,9 @@ function patch_TokenSetPosition() {
     libWrapper.register(
         "token-ease",
         "Token.prototype.setPosition",
-        async function setPosition(x, y, {animate=true, animation={}}={}) {
+        async function setPosition(...args) {
+
+            let [x, y, animate, animation] = args;
 
             // Create a Ray for the requested movement
             let origin = this._movement ? this.position : this._validPosition,
@@ -50,10 +52,12 @@ function patch_TokenSetPosition() {
             if (this._controlled && isVisible) {
                 let pad = 50;
                 let gp = this.getGlobalPosition();
-                if ((gp.x < pad) || (gp.x > window.innerWidth - pad) || (gp.y < pad) || (gp.y > window.innerHeight - pad)) {
+                const sidebarWidth = $("#sidebar").width();
+                if ((gp.x < pad) || (gp.x > window.innerWidth - pad - sidebarWidth) || (gp.y < pad) || (gp.y > window.innerHeight - pad)) {
                     canvas.animatePan(this.center);
                 }
             }
+
             return this;
 
         },
@@ -61,19 +65,22 @@ function patch_TokenSetPosition() {
     );
 }
 
-function patch_TokenAnimateMovement() {
+function patch_TokenAnimateMovement(){
+
     libWrapper.register(
         "token-ease",
         "Token.prototype.animateMovement",
-        async function animateMovement(ray, animation) {
+        async function animateMovement(...args) {
 
-            this._movement = ray;
+            let [ray, animation] = args;
 
             let speed = animation?.speed || game.settings.get("token-ease", "default-speed");
             let duration = animation?.duration || game.settings.get("token-ease", "default-duration");
             let ease = animation?.ease || game.settings.get("token-ease", "default-ease");
 
-            // Default move speed 10 spaces per second
+            this._movement = ray;
+
+            // Move distance is 10 spaces per second
             const s = canvas.dimensions.size;
             speed = s * speed;
             duration = duration ? duration : (ray.distance * 1000) / speed;
@@ -99,13 +106,12 @@ function patch_TokenAnimateMovement() {
                 animate: game.settings.get("core", "visionAnimation"),
                 source: this._isVisionSource() || emits,
                 sound: this._controlled || this.observer,
-                fog: emits && !this._controlled && (canvas.sight.sources.size > 0)
+                forceUpdateFog: emits && !this._controlled && (canvas.sight.sources.size > 0)
             }
 
             // Dispatch the animation function
-            let animationName = `Token.${this.id}.animateMovement`;
             await CanvasAnimation.animate(attributes, {
-                name: animationName,
+                name: this.movementAnimationName,
                 context: this,
                 duration: duration,
                 ontick: (dt, anim) => this._onMovementFrame(dt, anim, config),
@@ -119,10 +125,12 @@ function patch_TokenAnimateMovement() {
         },
         "OVERRIDE"
     );
+
 }
 
 function add_CanvasAnimation_Animate() {
-    CanvasAnimation.prototype.constructor.animate = async function(attributes, {context, name, duration, ontick, ease} = {}){
+    CanvasAnimation.prototype.constructor.animate = async function(attributes, {context, name, duration = 1000, ontick, ease} = {}) {
+
         // Prepare attributes
         attributes = attributes.map(a => {
             a.delta = a.to - a.parent[a.attribute];
@@ -136,31 +144,35 @@ function add_CanvasAnimation_Animate() {
 
         // Dispatch the animation request and return as a Promise
         return this._animatePromise(this._animateFrame, context, name, attributes, duration, ontick, ease);
-    };
+    }
 }
 
 function patch_AnimatePromise() {
     libWrapper.register(
         "token-ease",
         "CanvasAnimation.prototype.constructor._animatePromise",
-        async function _animateFrame(fn, context, name, attributes, duration, ontick, ease) {
-
+        async function _animatePromise(fn, context, name, attributes, duration, ontick, ease) {
             if (name) this.terminateAnimation(name);
             let animate;
-            return new Promise((resolve, reject) => {
+
+            // Create the animation promise
+            const promise = new Promise((resolve, reject) => {
                 animate = dt => fn(dt, resolve, reject, attributes, duration, ontick, ease);
                 this.ticker.add(animate, context);
                 if (name) this.animations[name] = {fn: animate, context, resolve};
             })
-            .catch(err => {
-                console.error(err)
-            })
-            .finally(() => {
-                this.ticker.remove(animate, context);
-                const isCompleted = name && (this.animations[name]?.fn === animate);
-                if ( isCompleted ) delete this.animations[name];
-            });
+                .catch(err => {
+                    console.error(err)
+                })
+                .finally(() => {
+                    this.ticker.remove(animate, context);
+                    const isCompleted = name && (this.animations[name]?.fn === animate);
+                    if ( isCompleted ) delete this.animations[name];
+                });
 
+            // Store the promise
+            if ( name in this.animations ) this.animations[name].promise = promise;
+            return promise;
         },
         "OVERRIDE"
     );
@@ -191,7 +203,6 @@ function patch_AnimateFrame() {
                         a.parent[a.attribute] += da;
                         a.done += da;
                         a.remaining = Math.abs(a.delta) - Math.abs(a.done);
-                        // Ease attribute instead
                         a.parent[a.attribute] = (a.to - a.delta) + ease(a.done / a.delta) * a.delta;
                     }
                 }
@@ -202,7 +213,6 @@ function patch_AnimateFrame() {
 
             // Resolve the original promise once the animation is complete
             if (complete) resolve(true);
-
         },
         "OVERRIDE"
     );

@@ -85,7 +85,7 @@ export const keyboardState = {
 
 export function configure_hotkeys(){
 
-    game.keybindings.register("token-ease", "measuredRulerMovement", {
+    game.keybindings.register("token-ease", "instantMovement", {
         name: "TOKEN-EASE.InstantMovement",
         editable: [
             { key: "AltLeft" }

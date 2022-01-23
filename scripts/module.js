@@ -1,5 +1,5 @@
 import { libWrapper } from "./lib/libWrapper/shim.js";
-import configure_settings from "./settings.js";
+import configure_settings, { configure_hotkeys, keyboardState } from "./settings.js";
 
 Hooks.once('init', async function() {
     patch_TokenSetPosition();
@@ -9,6 +9,7 @@ Hooks.once('init', async function() {
     patch_AnimateFrame();
     console.log("Token Ease | Patched core functions");
     configure_settings();
+    configure_hotkeys();
     console.log("Token Ease | Ready to (pl)ease!");
 });
 
@@ -20,9 +21,18 @@ function patch_TokenSetPosition() {
     libWrapper.register(
         "token-ease",
         "Token.prototype.setPosition",
-        async function setPosition(...args) {
+        async function setPosition(x, y, options) {
 
-            let [x, y, animate, animation] = args;
+            let { animate, animation } = foundry.utils.mergeObject(options, {
+                animate: true,
+                animation: {}
+            })
+
+            if(this.owner) {
+                if (keyboardState.instantMove) {
+                    animate = false;
+                }
+            }
 
             // Create a Ray for the requested movement
             let origin = this._movement ? this.position : this._validPosition,

@@ -1,0 +1,22 @@
+{
+  "name": "foundryvtt-tokenease",
+  "version": "1.0.0",
+  "description": "![Custom movement easing and speed](images/token-ease.gif)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haxxer/FoundryVTT-TOKEN-EASE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haxxer/FoundryVTT-TokenEase/issues"
+  },
+  "homepage": "https://github.com/Haxxer/FoundryVTT-TokenEase#readme",
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.242.0"
+  }
+}

@@ -1,12 +1,14 @@
 {
-  "TOKENEASE.speed-title": "Token Movement Speed",
-  "TOKENEASE.speed-description": "Sets the default animation speed of moving tokens, in spaces per second (10 is Foundry default).",
-  "TOKENEASE.duration-title": "Token Movement Duration",
-  "TOKENEASE.duration-description": "Sets the default animation duration for token movement (in milliseconds). This overrides Token Speed, and causes tokens to reach their destination in a set amount of time, regardless of distance.",
-  "TOKENEASE.ease-title": "Token Movement Ease",
-  "TOKENEASE.ease-description": "Sets the type of ease used by the movement animation on tokens.",
-  "TOKENEASE.ease-type-title": "Ease In/Out",
-  "TOKENEASE.ease-type-description": "Sets the type of easing to use at the start/end of the animation. If Token Movement Ease is set to Linear, this has no impact.",
-  "TOKENEASE.movement-keys-title": "Play animation on keypad movement",
-  "TOKENEASE.movement-keys-description": "If enabled, this will make moving tokens with the movement keys (arrow keys, etc) to play the animations configured above. We do not recommend enabling this, as the movement distance is so short when using movement keys."
+    "TOKEN-EASE.speed-title": "Token Movement Speed",
+    "TOKEN-EASE.speed-description": "Sets the default animation speed of moving tokens, in spaces per second (10 is Foundry default).",
+    "TOKEN-EASE.duration-title": "Token Movement Duration",
+    "TOKEN-EASE.duration-description": "Sets the default animation duration for token movement (in milliseconds). This overrides Token Speed, and causes tokens to reach their destination in a set amount of time, regardless of distance.",
+    "TOKEN-EASE.ease-title": "Token Movement Ease",
+    "TOKEN-EASE.ease-description": "Sets the type of ease used by the movement animation on tokens.",
+    "TOKEN-EASE.ease-type-title": "Ease In/Out",
+    "TOKEN-EASE.ease-type-description": "Sets the type of easing to use at the start/end of the animation. If Token Movement Ease is set to Linear, this has no impact.",
+    "TOKEN-EASE.movement-keys-title": "Play animation on keypad movement",
+    "TOKEN-EASE.movement-keys-description": "If enabled, this will make moving tokens with the movement keys (arrow keys, etc) to play the animations configured above. We do not recommend enabling this, as the movement distance is so short when using movement keys.",
+
+    "TOKEN-EASE.InstantMovement": "Instant Movement Hotkey (hold)"
 }

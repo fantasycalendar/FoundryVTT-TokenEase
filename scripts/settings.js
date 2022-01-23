@@ -21,8 +21,8 @@ export default function configure_settings(){
     window.easeFunctions = easeFunctions;
 
     game.settings.register("token-ease", "default-speed", {
-        name: game.i18n.format("TOKENEASE.speed-title"),
-        hint: game.i18n.format("TOKENEASE.speed-description"),
+        name: game.i18n.format("TOKEN-EASE.speed-title"),
+        hint: game.i18n.format("TOKEN-EASE.speed-description"),
         scope: "world",
         config: true,
         default: 10,
@@ -30,8 +30,8 @@ export default function configure_settings(){
     });
 
     game.settings.register("token-ease", "default-duration", {
-        name: game.i18n.format("TOKENEASE.duration-title"),
-        hint: game.i18n.format("TOKENEASE.duration-description"),
+        name: game.i18n.format("TOKEN-EASE.duration-title"),
+        hint: game.i18n.format("TOKEN-EASE.duration-description"),
         scope: "world",
         config: true,
         default: 0,
@@ -39,8 +39,8 @@ export default function configure_settings(){
     });
 
     game.settings.register("token-ease", "config-ease", {
-        name: game.i18n.format("TOKENEASE.ease-title"),
-        hint: game.i18n.format("TOKENEASE.ease-description"),
+        name: game.i18n.format("TOKEN-EASE.ease-title"),
+        hint: game.i18n.format("TOKEN-EASE.ease-description"),
         scope: "world",
         config: true,
         default: 0,
@@ -50,8 +50,8 @@ export default function configure_settings(){
     });
 
     game.settings.register("token-ease", "default-ease", {
-        name: game.i18n.format("TOKENEASE.ease-title"),
-        hint: game.i18n.format("TOKENEASE.ease-description"),
+        name: game.i18n.format("TOKEN-EASE.ease-title"),
+        hint: game.i18n.format("TOKEN-EASE.ease-description"),
         scope: "world",
         config: false,
         default: "linear",
@@ -59,8 +59,8 @@ export default function configure_settings(){
     });
 
     game.settings.register("token-ease", "ease-type", {
-        name: game.i18n.format("TOKENEASE.ease-type-title"),
-        hint: game.i18n.format("TOKENEASE.ease-type-description"),
+        name: game.i18n.format("TOKEN-EASE.ease-type-title"),
+        hint: game.i18n.format("TOKEN-EASE.ease-type-description"),
         scope: "world",
         config: true,
         default: 2,
@@ -70,11 +70,32 @@ export default function configure_settings(){
     });
 
     game.settings.register("token-ease", "animation-on-movement-keys", {
-        name: game.i18n.format("TOKENEASE.movement-keys-title"),
-        hint: game.i18n.format("TOKENEASE.movement-keys-description"),
+        name: game.i18n.format("TOKEN-EASE.movement-keys-title"),
+        hint: game.i18n.format("TOKEN-EASE.movement-keys-description"),
         scope: "world",
         config: true,
         default: false,
         type: Boolean
     });
+}
+
+export const keyboardState = {
+    instantMove: false
+}
+
+export function configure_hotkeys(){
+
+    game.keybindings.register("token-ease", "measuredRulerMovement", {
+        name: "TOKEN-EASE.InstantMovement",
+        editable: [
+            { key: "AltLeft" }
+        ],
+        onDown: () => {
+            keyboardState.instantMove = true;
+        },
+        onUp: () => {
+            keyboardState.instantMove = false;
+        }
+    });
+    
 }

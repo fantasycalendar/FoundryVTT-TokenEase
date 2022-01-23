@@ -2,12 +2,18 @@
   "name": "token-ease",
   "title": "Token Ease",
   "description": "This module extends native Foundry behavior to introduce easing, custom movement speed, and movement duration to tokens.",
-  "version": "This is auto replaced",
-  "library": "false",
   "author": "Wasp (Wasp#2005)",
-  "manifestPlusVersion": "1.0.0",
+  "authors": [],
+  "url": "https://github.com/fantasycalendar/FoundryVTT-TokenEase",
+  "flags": {},
+  "version": "This is auto replaced",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "9.000",
+  "scripts": [],
+  "esmodules": [
+    "/scripts/module.js"
+  ],
+  "styles": [],
   "languages": [
     {
       "lang": "en",
@@ -15,15 +21,18 @@
       "path": "/languages/en.json"
     }
   ],
-  "esmodules": [
-    "/scripts/module.js"
-  ],
+  "packs": [],
+  "system": [],
   "dependencies": [
     {
-      "name": "lib-wrapper"
+      "name": "lib-wrapper",
+      "type": "module"
     }
   ],
-  "url": "This is auto replaced",
-  "manifest": "This is auto replaced",
-  "download": "This is auto replaced"
+  "socket": false,
+  "manifest": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/latest/download/module.json",
+  "download": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/download/1.0.4/module.zip",
+  "protected": false,
+  "coreTranslation": false,
+  "library": "false"
 }

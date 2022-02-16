@@ -33,12 +33,14 @@ No more will you suffer the lethargic slog of transporting tokens across the can
 
 ## Credits
 
+* Kerrec Snowmane for his implementation of the hooks
 * League of Extraordinary FoundryVTT Developers
 * [Easing Functions Cheat Sheet](https://easings.net/) ([GitHub](https://github.com/ai/easings.net)) - Copyright © 2020 Andrey Sitnik and Ivan Solovev
 
 ## Download Here:
 
-`https://github.com/FantasyCalendar/FoundryVTT-TokenEase/releases/latest/download/module.json`
+`https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/latest/download/module.json`
+
 
 ## Module Settings
 
@@ -80,9 +82,15 @@ If enabled, this will make moving tokens with the movement keys (arrow keys, etc
 
 We do not recommend enabling this, as the movement distance is so short when using movement keys.
 
+## Token Settings
+
+Each token can override the module's default movement animation settings.
+
+![Token settings](images/token_settings.png)
+
 ## API
 
-### Changes to `Token.Document.Update`
+### Changes to `TokenDocument#update`
 
 This accepts an additional optional parameter in its second parameter:
 

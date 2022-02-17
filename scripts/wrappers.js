@@ -45,12 +45,12 @@ export function coreAnimateMovement(){
 
 export function coreTerminateAnimation() {
     libWrapper.register(CONSTANTS.MODULE_NAME, 'CanvasAnimation.terminateAnimation', function terminateAnimation(wrapper, ...args) {
-        const [name] = args; // Added by Hooking Tokens.
+        const [name] = args;
 
-        if (!name.includes("Token")) return wrapper(...args) // Added by Hooking Tokens.
+        if (!name.includes("Token")) return wrapper(...args)
 
         let animation = this.animations[name];
-        if (animation) animation.terminate = true; // Added by Hooking Tokens.
+        if (animation) animation.terminate = true;
     }, 'MIXED')
 }
 

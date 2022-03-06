@@ -16,7 +16,6 @@ Other works by us:
 - [Fantasy Calendar](https://app.fantasy-calendar.com) - The best calendar creator and management app on the internet
 - [Sequencer](https://foundryvtt.com/packages/sequencer) - Wow your players by playing visual effects on the canvas
 - [Item Piles](https://foundryvtt.com/packages/item-piles) - Drag & drop items into the scene to drop item piles that you can then easily pick up
-- [Potato Or Not](https://foundryvtt.com/packages/potato-or-not) - Automatically set up Foundry to the best visual settings for your players' potato computers
 - [Tagger](https://foundryvtt.com/packages/tagger) - Tag objects in the scene and retrieve them with a powerful API
 
 Like what we've done? Buy us a coffee!

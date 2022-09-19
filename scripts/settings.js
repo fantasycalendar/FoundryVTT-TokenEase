@@ -16,16 +16,23 @@ const debouncedDoubleCheckEase = debounce(() => {
     game.settings.set("token-ease", "default-ease", ease);
 }, 100)
 
-export default function configure_settings(){
+export function configure_settings(){
 
     window.easeFunctions = easeFunctions;
+
+    game.settings.register("token-ease", "module-version", {
+        scope: "world",
+        config: false,
+        default: "",
+        type: String
+    });
 
     game.settings.register("token-ease", "default-speed", {
         name: game.i18n.format("TOKEN-EASE.speed-title"),
         hint: game.i18n.format("TOKEN-EASE.speed-description"),
         scope: "world",
         config: true,
-        default: 10,
+        default: 6,
         type: Number
     });
 
@@ -77,6 +84,20 @@ export default function configure_settings(){
         default: false,
         type: Boolean
     });
+    
+}
+
+export async function run_migrations(){
+    
+    
+    if(game.settings.get("token-ease", "module-version") === ""){
+        let defaultSpeed = game.settings.get("token-ease", "default-speed");
+        defaultSpeed  = Math.floor(defaultSpeed * 0.6);
+        await game.settings.set("token-ease", "default-speed", defaultSpeed);
+    }
+    
+    await game.settings.set("token-ease", "module-version", game.modules.get("token-ease").version);
+    
 }
 
 export const keyboardState = {

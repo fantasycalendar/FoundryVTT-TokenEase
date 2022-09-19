@@ -1,48 +1,45 @@
 {
-    "name": "token-ease",
-    "title": "Token Ease",
-    "description": "This module extends native Foundry behavior to introduce easing, custom movement speed, and movement duration to tokens.",
-    "authors": [
-        {
-            "name": "Wasp",
-            "url": "https://github.com/Haxxer",
-            "discord": "Wasp#2005"
-        },
-        {
-            "name": "Kerrec Snowmane",
-            "url": "https://github.com/ggagnon76",
-            "discord": "Kerrec Snowmane#5264"
-        }
-    ],
-    "url": "https://github.com/fantasycalendar/FoundryVTT-TokenEase",
-    "flags": {},
-    "version": "This is auto replaced",
-    "minimumCoreVersion": "0.8.6",
-    "compatibleCoreVersion": "9.000",
-    "scripts": [],
-    "esmodules": [
-        "/scripts/module.js"
-    ],
-    "styles": [],
-    "languages": [
-        {
-            "lang": "en",
-            "name": "English",
-            "path": "/languages/en.json"
-        }
-    ],
-    "packs": [],
-    "system": [],
-    "dependencies": [
-        {
-            "name": "lib-wrapper",
-            "type": "module"
-        }
-    ],
-    "socket": false,
-    "manifest": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/latest/download/module.json",
-    "download": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/download/1.0.4/module.zip",
-    "protected": false,
-    "coreTranslation": false,
-    "library": "false"
+  "id": "token-ease",
+  "title": "Token Ease",
+  "description": "This module extends native Foundry behavior to introduce easing, custom movement speed, and movement duration to tokens.",
+  "authors": [
+    {
+      "name": "Wasp",
+      "url": "https://github.com/Haxxer",
+      "discord": "Wasp#2005"
+    },
+    {
+      "name": "Kerrec Snowmane",
+      "url": "https://github.com/ggagnon76",
+      "discord": "Kerrec Snowmane#5264"
+    }
+  ],
+  "flags": {},
+  "version": "1.2.0",
+  "minimumCoreVersion": "10",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "10"
+  },
+  "scripts": [],
+  "esmodules": [
+    "/scripts/module.js"
+  ],
+  "styles": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "/languages/en.json"
+    }
+  ],
+  "packs": [],
+  "system": [],
+  "socket": false,
+  "url": "https://github.com/fantasycalendar/FoundryVTT-TokenEase",
+  "manifest": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/latest/download/module.json",
+  "download": "https://github.com/fantasycalendar/FoundryVTT-TokenEase/releases/latest/download/module.zip",
+  "protected": false,
+  "coreTranslation": false,
+  "library": "false"
 }

@@ -1,27 +1,24 @@
-import { libWrapper } from "./lib/libWrapper/shim.js";
-import configure_settings, { configure_hotkeys, keyboardState } from "./settings.js";
-import * as Wrapper from "./wrappers.js"
+import { configure_settings, configure_hotkeys, keyboardState, run_migrations } from "./settings.js";
 import CONSTANTS from "./constants.js";
 import TokenEaseConfig from "./token-ease-config-app.js";
+import { easeFunctions } from "./lib/ease.js";
 
 Hooks.once('init', async function() {
-
-    Wrapper.coreAnimateMovement();
-    Wrapper.coreAnimateFrame();
-    Wrapper.coreAnimatePromise();
-    Wrapper.coreTerminateAnimation();
-    Wrapper.coreTokenAnimateLinear();
-    Wrapper.coreRulerMoveToken();
-
-
     console.log("Token Ease | Patched core functions");
     configure_settings();
     configure_hotkeys();
     console.log("Token Ease | Ready to (pl)ease!");
 });
 
+Hooks.once("ready", async function () {
+    run_migrations();
+    for(const [name, func] of Object.entries(easeFunctions)){
+        CanvasAnimation[name] = func;
+    }
+})
 
-Hooks.on('preUpdateToken', (token, changes, data) => {
+
+Hooks.on('preUpdateToken', (token, changes, data, ...args) => {
 
     // If position hasn't changed, or animate is false, don't change anything.
     if(!(changes.x || changes.y) || data.animate === false) return;
@@ -35,17 +32,17 @@ Hooks.on('preUpdateToken', (token, changes, data) => {
 
         if(!game.settings.get("token-ease", "animation-on-movement-keys")) {
             const ray = new Ray(
-                { x: token.data.x, y: token.data.y },
-                { x: changes?.x ?? token.data.x, y: changes?.y ?? token.data.y }
+                { x: token.x, y: token.y },
+                { x: changes?.x ?? token.x, y: changes?.y ?? token.y }
             );
 
             // If movement distance <= grid size, and play animation on movement keys isn't enabled, revert to foundry default
             let smallMovement = Math.max(Math.abs(ray.dx), Math.abs(ray.dy)) <= canvas.grid.size;
             if (smallMovement && !data?.animation?.speed && !data?.animation?.duration) {
                 setProperty(data, `animation`, {
-                    speed: 10,
+                    movementSpeed: 10,
                     duration: 0,
-                    ease: "linear"
+                    easing: "linear"
                 });
             }
         }
@@ -54,11 +51,13 @@ Hooks.on('preUpdateToken', (token, changes, data) => {
         const tokenFlags = token.getFlag(CONSTANTS.MODULE_NAME, CONSTANTS.MOVEMENT_FLAG);
 
         // Set a temporary flag for this animation's data
-        setProperty(changes, `flags.${CONSTANTS.MODULE_NAME}.${CONSTANTS.ANIMATION_FLAG}`, {
-            speed: data?.animation?.speed ?? tokenFlags?.speed ?? game.settings.get("token-ease", "default-speed"),
-            duration: data?.animation?.duration ?? tokenFlags?.duration ?? game.settings.get("token-ease", "default-duration"),
-            ease: data?.animation?.ease ?? tokenFlags?.ease ?? game.settings.get("token-ease", "default-ease")
+        setProperty(data, `animation`, {
+            movementSpeed: data?.animation?.speed ?? tokenFlags?.speed ?? game.settings.get("token-ease", "default-speed") ?? 6,
+            duration: data?.animation?.duration ?? tokenFlags?.duration ?? game.settings.get("token-ease", "default-duration") ?? 0,
+            easing: data?.animation?.ease ?? tokenFlags?.ease ?? game.settings.get("token-ease", "default-ease") ?? "linear"
         });
+        
+        console.log(data);
     }
 });
 

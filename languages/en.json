@@ -1,6 +1,6 @@
 {
     "TOKEN-EASE.speed-title": "Token Movement Speed",
-    "TOKEN-EASE.speed-description": "Sets the default animation speed, in spaces per second (10 is Foundry default).",
+    "TOKEN-EASE.speed-description": "Sets the default animation speed, in spaces per second (6 is Foundry default).",
     "TOKEN-EASE.duration-title": "Token Movement Duration",
     "TOKEN-EASE.duration-description": "Sets the default animation duration for movement (in milliseconds). This overrides Token Speed, and reaches the destination in a set amount of time, regardless of distance. Setting this to 0 will utilize speed instead.",
     "TOKEN-EASE.ease-title": "Token Movement Ease",

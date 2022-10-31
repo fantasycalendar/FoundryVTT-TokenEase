@@ -56,8 +56,7 @@ Hooks.on('preUpdateToken', (token, changes, data, ...args) => {
             duration: data?.animation?.duration ?? tokenFlags?.duration ?? game.settings.get("token-ease", "default-duration") ?? 0,
             easing: data?.animation?.ease ?? tokenFlags?.ease ?? game.settings.get("token-ease", "default-ease") ?? "linear"
         });
-        
-        console.log(data);
+
     }
 });
 

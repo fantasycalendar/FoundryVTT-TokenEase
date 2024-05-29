@@ -1,85 +1,77 @@
 <form class="flex token-ease-config" autocomplete="off" style="padding: 0.25rem;">
 
-    <style>
+	<style>
 
-        .token-ease-config .form-group{
-            padding: 0.2rem;
-            border-radius: 5px;
-            margin: 0.2rem 0;
-        }
+      .token-ease-config .form-group {
+          padding: 0.2rem;
+          border-radius: 5px;
+          margin: 0.2rem 0;
+      }
 
-        .token-ease-config p {
-            flex: 0;
-            line-height: 14px;
-            font-size: var(--font-size-12);
-            color: var(--color-text-dark-secondary);
-            padding-right: 1rem;
-            margin-top: 0;
-            overflow-y: hidden;
-        }
+      .token-ease-config p {
+          flex: 0;
+          line-height: 14px;
+          font-size: var(--font-size-12);
+          color: var(--color-text-dark-secondary);
+          padding-right: 1rem;
+          margin-top: 0;
+          overflow-y: hidden;
+      }
 
-        .token-ease-config footer {
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 1px solid var(--color-border-light-primary, #b5b3a4);
-        }
+      .token-ease-config footer {
+          margin-top: 0.5rem;
+          padding-top: 0.5rem;
+          border-top: 1px solid var(--color-border-light-primary, #b5b3a4);
+      }
 
-    </style>
+	</style>
 
-    <div class="form-group">
-        <label>
-            {{localize "TOKEN-EASE.override"}}
-        </label>
-        <input type="checkbox" name="enabled" {{checked settings.enabled}}/>
-    </div>
+	<div class="form-group">
+		<label>
+			{{localize "TOKEN-EASE.override"}}
+		</label>
+		<input type="checkbox" name="enabled" {{checked settings.enabled}}/>
+	</div>
 
-    <div class="form-group">
-        <label style="flex:4;">
-            {{localize "TOKEN-EASE.speed-title"}}
-            <p>{{localize "TOKEN-EASE.speed-description"}}</p>
-        </label>
-        <input style="flex:2;" type="number" name="speed" value="{{settings.speed}}" required/>
-    </div>
+	<div class="form-group">
+		<label style="flex:4;">
+			{{localize "TOKEN-EASE.speed-title"}}
+			<p>{{localize "TOKEN-EASE.speed-description"}}</p>
+		</label>
+		<input style="flex:2;" type="number" name="speed" value="{{settings.speed}}" required/>
+	</div>
 
-    <div class="form-group">
-        <label style="flex:4;">
-            {{localize "TOKEN-EASE.duration-title"}}
-            <p>{{localize "TOKEN-EASE.duration-description"}}</p>
-        </label>
-        <input style="flex:2;" type="number" name="duration" value="{{settings.duration}}" required/>
-    </div>
+	<div class="form-group">
+		<label style="flex:4;">
+			{{localize "TOKEN-EASE.duration-title"}}
+			<p>{{localize "TOKEN-EASE.duration-description"}}</p>
+		</label>
+		<input style="flex:2;" type="number" name="duration" value="{{settings.duration}}" required/>
+	</div>
 
-    <div class="form-group">
-        <label style="flex:4;">
-            {{localize "TOKEN-EASE.ease-title"}}
-            <p>{{localize "TOKEN-EASE.ease-description"}}</p>
-        </label>
-        {{#select settings.configEase}}
-        <select name="configEase">
-            {{#each easeChoices as |ease id|}}
-                <option value="{{ease}}">{{ease}}</option>
-            {{/each}}
-        </select>
-        {{/select}}
-    </div>
+	<div class="form-group">
+		<label style="flex:4;">
+			{{localize "TOKEN-EASE.ease-title"}}
+			<p>{{localize "TOKEN-EASE.ease-description"}}</p>
+		</label>
+		<select name="configEase">
+			{{selectOptions easeChoices selected=settings.configEase}}
+		</select>
+	</div>
 
-    <div class="form-group">
-        <label style="flex:4;">
-            {{localize "TOKEN-EASE.ease-title"}}
-            <p>{{localize "TOKEN-EASE.ease-description"}}</p>
-        </label>
-        {{#select settings.configInOut}}
-        <select name="configInOut">
-            <option value="In">In</option>
-            <option value="Out">Out</option>
-            <option value="InOut">In & Out</option>
-        </select>
-        {{/select}}
-    </div>
+	<div class="form-group">
+		<label style="flex:4;">
+			{{localize "TOKEN-EASE.ease-title"}}
+			<p>{{localize "TOKEN-EASE.ease-description"}}</p>
+		</label>
+		<select name="configInOut">
+			{{selectOptions inOutChoices selected=settings.configInOut}}
+		</select>
+	</div>
 
-    <footer class="sheet-footer flexrow" style="margin-top: 0.5rem;">
-        <button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{localize "Submit"}}</button>
-        <button type="submit" name="cancel" value="0"><i class="far fa-times"></i> {{localize "Cancel"}}</button>
-    </footer>
+	<footer class="sheet-footer flexrow" style="margin-top: 0.5rem;">
+		<button type="submit" name="submit" value="1"><i class="far fa-save"></i> {{localize "Submit"}}</button>
+		<button type="submit" name="cancel" value="0"><i class="far fa-times"></i> {{localize "Cancel"}}</button>
+	</footer>
 
 </form>

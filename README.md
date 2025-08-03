@@ -1,4 +1,4 @@
-# Notice - Due to a decision made by the Foundry devs, Token Ease is no longer able to function in Foundry. [Please read more here](https://github.com/fantasycalendar/FoundryVTT-TokenEase/issues/21).
+# Notice - Due to a decision made by the Foundry devs, Token Ease is no longer able to function in Foundry v13 and beyond. [Please read more here](https://github.com/fantasycalendar/FoundryVTT-TokenEase/issues/21).
 
 # Token Ease
 
